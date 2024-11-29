@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+mongo_data
+.git
+.gitignore
+*.md
+dist

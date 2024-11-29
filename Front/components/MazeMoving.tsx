@@ -20,6 +20,7 @@ interface MazeMovingProps {
 
 export const MazeMoving: React.FC<MazeMovingProps> = ({ gyroscopeData }) => {
   const [levelCount, setLevelCount] = useState(1);
+  const [timer, setTimer] = useState(0);
   const mazeRef = useRef<Group | null>(null);
   const ballRef = useRef<Mesh | null>(null);
   const rendererRef = useRef<Renderer | null>(null);
@@ -34,7 +35,7 @@ export const MazeMoving: React.FC<MazeMovingProps> = ({ gyroscopeData }) => {
   const MAX_VELOCITY = 0.2;
   const BOUNCE_FACTOR = 0.5;
 
-  const MAZE_SIZE = 11;
+  const MAZE_SIZE = 21;
   const CELL_SIZE = 2;
 
   const START_POSITION = {
@@ -47,11 +48,13 @@ export const MazeMoving: React.FC<MazeMovingProps> = ({ gyroscopeData }) => {
     z: (MAZE_SIZE * CELL_SIZE) / 2 - CELL_SIZE,
   };
 
-  const [timer, setTimer] = useState(0);
-
   setTimeout(() => {
     setTimer(timer + 1);
   }, 1000);
+
+  const resetTimer = () => {
+    setTimer(0);
+  };
 
   const createMaze = (scene: Scene) => {
     const mazeGroup = new Group();
