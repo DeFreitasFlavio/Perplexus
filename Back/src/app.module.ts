@@ -3,8 +3,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { User } from './users/user.entity';
-import { UserModule } from './users/user.module';
+import { User } from './users/users.entity';
+import { UsersModule } from './users/users.module';
 import { LeaderboardModule } from './leaderboard/leaderboard.module';
 import { Score } from './leaderboard/entity/score.entity';
 
@@ -26,7 +26,7 @@ import { Score } from './leaderboard/entity/score.entity';
       }),
       inject: [ConfigService],
     }),
-    UserModule,
+    UsersModule,
     AuthModule,
     LeaderboardModule,
   ],

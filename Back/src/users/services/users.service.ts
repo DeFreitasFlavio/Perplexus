@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { createUserDto } from '../dto/user.dto';
-import { User } from '../user.entity';
-import { UserExistsException } from '../user-exists.exception';
+import { createUsersDto } from '../dto/users.dto';
+import { User } from '../users.entity';
+import { UserExistsException } from '../users-exists.exception';
 const bcrypt = require('bcrypt');
 
 @Injectable()
@@ -13,7 +13,7 @@ export class UsersServices {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async createUser(createUserDto: createUserDto): Promise<User> {
+  async createUser(createUserDto: createUsersDto): Promise<User> {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(createUserDto.password, salt);
     const user = new User();

@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './services/auth.service';
-import { UserModule } from '../users/user.module';
+import { UsersModule } from '../users/users.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport/dist';
-import { JwtModule } from '@nestjs/jwt/dist';
+import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
-    UserModule,
+    UsersModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,

@@ -14,9 +14,9 @@ import {
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guards';
 import { LocalAuthGuard } from '../../auth/guards/local-auth.guards';
 import { AuthService } from '../../auth/services/auth.service';
-import { createUserDto } from '../dto/user.dto';
-import { loginUserDto } from '../dto/login.dto';
-import { UsersServices } from '../services/user.service';
+import { createUsersDto } from '../dto/users.dto';
+import { loginUsersDto } from '../dto/login.dto';
+import { UsersServices } from '../services/users.service';
 import * as dayjs from 'dayjs';
 import * as isBetween from 'dayjs/plugin/isBetween';
 
@@ -31,13 +31,13 @@ export class UsersController {
 
   @UsePipes(ValidationPipe)
   @Post('auth/sign-up')
-  async signup(@Body() createUserDto: createUserDto): Promise<createUserDto> {
+  async signup(@Body() createUserDto: createUsersDto): Promise<createUsersDto> {
     return await this.userServices.createUser(createUserDto);
   }
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Body() loginUserDto: loginUserDto) {
+  async login(@Body() loginUserDto: loginUsersDto) {
     if (
       this.authService.validateUser(loginUserDto.email, loginUserDto.password)
     ) {
